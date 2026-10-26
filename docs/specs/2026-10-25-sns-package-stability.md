@@ -82,8 +82,10 @@ edit state, replay an old plan or infer rollback from reverting source.
 
 B1: Change only the existing source-path object's `path` from the directory to
 `${path.module}/functions/app.py`. Execute the pinned builder in separate
-fixture working directories with identical handler bytes and differing
-`.terragrunt-source-manifest` contents. Assert the same content-derived
+fixture working directories with identical handler bytes, mode 0644 and mtime
+1577836800. Use the same relative `slack/functions/app.py` path beneath each
+fixture cwd; vary only `.terragrunt-source-manifest` contents. Normalize only
+fixture metadata, not production packaging. Assert the same content-derived
 filename and ZIP bytes, and exactly one archive member named `app.py`.
 
 B2: Alter handler bytes in a third fixture and assert a different package
@@ -91,9 +93,11 @@ identity and archive bytes. This tests the real builder, not a reimplemented
 hash or a string-only expectation.
 
 B3: Existing handler/HTTP-boundary tests remain passing; check Terraform
-formatting and whitespace. Builder tests explicitly require a supplied path to
-the installed 6.4.0 builder, verify its package-file hash against the reviewed
-version, and fail when absent instead of silently skipping. The fixture reads
+formatting and whitespace. Implement `modules/sns/tests/test_package.py`; run
+`SNS_LAMBDA_PACKAGE_SCRIPT=/absolute/path/to/lambda-6.4.0/package.py python3 -m unittest discover -s modules/sns/tests -p test_package.py`.
+The required environment variable supplies the installed builder. Verify its
+SHA-256 is `9ad2f39ce95cddb5c6460d8eeab543c5e3ab1c858910556f4e3a5f76910948b8`;
+fail when absent or mismatched instead of silently skipping. The fixture reads
 the source-path expression from the module so restoring directory selection
 reproduces the original defect.
 
