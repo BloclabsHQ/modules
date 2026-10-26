@@ -30,7 +30,7 @@ module "lambda" {
   create                            = var.create
   function_name                     = var.lambda_function_name
   handler                           = "app.lambda_handler"
-  source_path                       = [{ path = "${path.module}/functions/" }]
+  source_path                       = [{ path = "${path.module}/functions/app.py" }]
   recreate_missing_package          = false
   runtime                           = "python3.10"
   timeout                           = 30
