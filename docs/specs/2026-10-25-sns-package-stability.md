@@ -2,8 +2,8 @@
 
 **Tracking issue:** https://github.com/BloclabsHQ/modules/issues/73
 
-**Goal (issue brief):** See issue § Goal.  
-**Done when (acceptance):** See issue § Done when.  
+**Goal (issue brief):** See issue § Goal.
+**Done when (acceptance):** See issue § Done when.
 **Out of scope (issue brief):** See issue § Out of scope.
 
 ## 1. Systems touched
@@ -24,10 +24,10 @@ source changes belong here.
 
 ## 2. Security
 
-**Auth:** Existing repository contribution and consumer saved-plan controls.  
+**Auth:** Existing repository contribution and consumer saved-plan controls.
 **Operator/admin routes:** No new route; the account operator uses the existing
 [plan/apply procedure](https://github.com/BloclabsHQ/iac/blob/main/docs/terraform-plan-handoff.md)
-and [operator authorization](https://github.com/BloclabsHQ/fabricbloc/blob/main/architecture/canonical-contracts/operator-authorization.md).  
+and [operator authorization](https://github.com/BloclabsHQ/fabricbloc/blob/main/architecture/canonical-contracts/operator-authorization.md).
 **Secrets:** No new secrets or secret changes. The existing webhook remains
 with the [account notification-secret owner](https://github.com/BloclabsHQ/iac/blob/main/docs/aws-account-operating-model.md#notification-secrets).
 Tests use source files and synthetic cache metadata, with no credentials or AWS.
@@ -39,7 +39,7 @@ with the consumer. Source merge is not deployment evidence.
 
 ## 4. Cost
 
-**Cost class:** Existing infrastructure; no new AWS resources or CI workflow.  
+**Cost class:** Existing infrastructure; no new AWS resources or CI workflow.
 **Cost review:** no — package input correction adds no standing resource,
 schedule, paid dependency or workload capacity.
 
